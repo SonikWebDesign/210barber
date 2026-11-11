@@ -6,8 +6,29 @@
      url   – booking link; while it is null the card shows "Soon" and is not clickable
    To grow toward 17, just add more lines. */
 var BARBERS = [
-  { name: 'Barber 01', price: null, via: null, url: null },
-  { name: 'Barber 02', price: null, via: null, url: null }
+  { name: '210blendz', price: 50, via: 'Booksy', url: 'https://210blendz19.booksy.com/k/' },
+  { name: 'Cuttinupwitjayy', price: 35, via: 'Booksy', url: 'https://booksy.com/en-us/dl/show-business/1215405' }
+];
+
+/* ---- Haircut photos: to add more, drop the file in this folder and add a line ----
+   src – image path, cap – caption shown in the full-size viewer */
+var CUTS = [
+  { src: 'cut-01.jpg', cap: 'Precision fringe cut with skin taper' },
+  { src: 'cut-02.jpg', cap: 'Textured crop with highlights & low taper' },
+  { src: 'cut-03.jpg', cap: 'Textured crop — taper detail' },
+  { src: 'cut-04.jpg', cap: 'Freestyle design with burst fade' },
+  { src: 'cut-05.jpg', cap: 'High skin fade with sharp lineup' }
+];
+
+/* ---- Competition photos (award-XX.jpg). wide: true for landscape shots ---- */
+var AWARDS = [
+  { src: 'award-01.jpg', cap: 'ATX Barber Madness — Freestyle & Taper winners' },
+  { src: 'award-02.jpg', cap: 'Taking the top prize on stage', wide: true },
+  { src: 'award-03.jpg', cap: 'World Class Barber Expo 2026' },
+  { src: 'award-04.jpg', cap: 'The Royal Battle — Taper King & Dynamic Duo' },
+  { src: 'award-05.jpg', cap: 'The Notorious Experience — Best Taper Champion', wide: true },
+  { src: 'award-06.jpg', cap: 'Freestyle champions — Drew\'s World Expo' },
+  { src: 'award-07.jpg', cap: 'First place in Houston' }
 ];
 
 document.getElementById('yr').textContent = new Date().getFullYear();
@@ -43,7 +64,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
         a.href = b.url;
         a.target = '_blank';
         a.rel = 'noopener';
-        a.setAttribute('aria-label', 'Book ' + b.name + ', starting at $' + b.price + ', on ' + b.via);
+        a.setAttribute('aria-label', 'Book ' + b.name + (b.price ? ', starting at $' + b.price : '') + ', on ' + b.via);
       }
       a.style.setProperty('--i', i);
       a.innerHTML =
@@ -74,6 +95,33 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   });
 })();
 
+/* ---- Photo galleries ---- */
+(function () {
+  var zoom = '<span class="zoom"><svg class="svg-i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>';
+  function fill(id, list, cls) {
+    var grid = document.getElementById(id);
+    if (!grid) return;
+    list.forEach(function (p) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = cls + ' reveal' + (p.wide ? ' wide' : '');
+      btn.setAttribute('data-full', p.src);
+      btn.setAttribute('data-cap', p.cap || '');
+      btn.setAttribute('aria-label', 'Open larger image: ' + (p.cap || 'photo'));
+      var img = document.createElement('img');
+      img.src = p.src;
+      img.alt = p.cap || '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      btn.appendChild(img);
+      btn.insertAdjacentHTML('beforeend', zoom);
+      grid.appendChild(btn);
+    });
+  }
+  fill('cutsGrid', CUTS, 'gitem');
+  fill('awardsGrid', AWARDS, 'gitem aitem');
+})();
+
 /* ---- Scroll reveal ---- */
 (function () {
   var els = document.querySelectorAll('.reveal');
@@ -86,9 +134,10 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ---- Gallery lightbox ---- */
 (function () {
-  var items = Array.prototype.slice.call(document.querySelectorAll('.gitem'));
+  var all = Array.prototype.slice.call(document.querySelectorAll('.gitem'));
   var lb = document.getElementById('lightbox');
-  if (!items.length || !lb) return;
+  if (!all.length || !lb) return;
+  var items = all;
   var lbImg = document.getElementById('lbImg');
   var lbCap = document.getElementById('lbCap');
   var lbCount = document.getElementById('lbCount');
@@ -116,7 +165,13 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus();
   }
-  items.forEach(function (el, i) { el.addEventListener('click', function () { open(i); }); });
+  all.forEach(function (el) {
+    el.addEventListener('click', function () {
+      var grid = el.parentNode;
+      items = Array.prototype.slice.call(grid.querySelectorAll('.gitem'));
+      open(items.indexOf(el));
+    });
+  });
   document.getElementById('lbClose').addEventListener('click', close);
   document.getElementById('lbNext').addEventListener('click', function () { show(idx + 1); });
   document.getElementById('lbPrev').addEventListener('click', function () { show(idx - 1); });
