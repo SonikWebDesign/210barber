@@ -27,8 +27,8 @@ button{font:inherit;color:inherit}
 .script{font-family:'Kaushan Script',cursive;font-weight:400;text-transform:none;letter-spacing:0;display:inline-block;transform:rotate(-3deg);padding:0 .08em}
 :focus-visible{outline:2px solid #fff;outline-offset:3px}
 
-/* The logo is black-on-white; invert + screen drops it cleanly onto dark surfaces */
-.mark-img,.hero-logo,.foot-logo{filter:invert(1) contrast(1.15);mix-blend-mode:screen}
+/* logo-outline.png is a transparent, white-outline version generated from logo.jpg */
+
 
 /* NAV */
 header{
@@ -40,7 +40,7 @@ header{
 header.scrolled{border-bottom-color:var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
 .brand{display:flex;align-items:center;margin-right:auto}
-.mark-img{height:60px;width:auto;margin:-4px 0 -4px -8px}
+.mark-img{height:56px;width:auto}
 .nav-links{display:flex;align-items:center;gap:30px;margin-right:12px}
 .nav-links a{font-size:.82rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;font-weight:500;transition:.2s;position:relative}
 .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .25s}
@@ -81,7 +81,7 @@ header.scrolled{border-bottom-color:var(--line)}
 .hero-inner{position:relative;padding:120px 0 96px;display:flex;flex-direction:column;align-items:center}
 .hero-logo{width:min(760px,100%);height:auto;margin:6px 0 2px;animation:logoIn .9s cubic-bezier(.2,.8,.2,1) both}
 @keyframes logoIn{from{opacity:0;transform:scale(.94) rotate(-2deg)}to{opacity:1;transform:none}}
-.hero p.lead{max-width:540px;color:var(--muted);font-size:1.08rem;margin:6px 0 34px}
+.hero p.lead{max-width:560px;color:var(--ink);font-size:1.12rem;margin:10px 0 10px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
 .hero-meta{display:flex;gap:0;margin-top:56px;flex-wrap:wrap;justify-content:center}
 .hero-meta .m{padding:0 34px;border-left:1px solid var(--line)}
@@ -185,7 +185,9 @@ section{padding:104px 0}
 .step .n{width:28px;height:28px;border-radius:50%;background:#fff;color:#0a0a0b;display:grid;place-items:center;font-size:.8rem;font-weight:700}
 
 /* FOLLOW */
-.follow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.follow-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.follow-card{grid-column:span 2}
+.follow-card.wide{grid-column:span 3}
 .follow-card{background:var(--panel);border:1.5px solid var(--line);border-radius:18px;padding:32px 26px;text-align:center;transition:.25s}
 a.follow-card:hover{border-color:#fff;transform:translateY(-4px)}
 .follow-card .ico{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;margin:0 auto 16px}
@@ -195,7 +197,7 @@ a.follow-card:hover{border-color:#fff;transform:translateY(-4px)}
 /* FOOTER */
 footer{background:#060607;border-top:1px solid var(--line);padding:50px 0 30px}
 .foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center;padding-bottom:30px;border-bottom:1px solid var(--line)}
-.foot-logo{width:210px;height:auto;margin-left:-14px}
+.foot-logo{width:200px;height:auto;margin-bottom:10px}
 .foot-brand p{color:var(--muted);font-size:.88rem;max-width:320px;margin-top:4px}
 .foot-links{display:flex;gap:14px}
 .foot-links a{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--muted);transition:.25s}
@@ -236,11 +238,12 @@ footer{background:#060607;border-top:1px solid var(--line);padding:50px 0 30px}
   }
   .nav-links.open{opacity:1;visibility:visible;transform:none}
   .burger{display:flex}
-  .mark-img{height:44px}
+  .mark-img{height:42px}
   .nav .btn{padding:8px 16px;font-size:.78rem}
   .about-grid{grid-template-columns:1fr;gap:44px}
   .about-card{margin:0 8px}
   .follow-grid{grid-template-columns:1fr}
+  .follow-card,.follow-card.wide{grid-column:auto}
   .hero-meta .m{padding:0 20px}
   .hero-meta .num{font-size:2.1rem}
   .marquee span{font-size:1.25rem}
@@ -318,3 +321,32 @@ a.contact-row:hover .svg-i{background:#fff;color:#0a0a0b;border-color:#fff}
   .contact-block{grid-template-columns:1fr;padding:26px 22px;gap:22px}
   .lb-close{top:14px;right:14px}.lb-prev{left:10px}.lb-next{right:10px}.lb-img{max-height:72vh}
 }
+
+/* --- Client revision: hero walk-in + socials, welcome copy --- */
+.hero-open{font-size:.76rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:30px}
+.walkin{
+  display:inline-block;margin-top:26px;font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,2.9rem);letter-spacing:.06em;line-height:1;
+  color:#fff;padding:12px 30px 9px;border:3px solid #fff;border-radius:14px;transform:rotate(-2deg);
+  box-shadow:6px 6px 0 0 rgba(255,255,255,.28);transition:.22s;animation:walkPulse 2.4s ease-in-out infinite;
+}
+.walkin:hover{background:#fff;color:#0a0a0b;transform:rotate(-2deg) translate(-2px,-2px);box-shadow:9px 9px 0 0 rgba(255,255,255,.4)}
+@keyframes walkPulse{0%,100%{box-shadow:6px 6px 0 0 rgba(255,255,255,.28),0 0 0 0 rgba(255,255,255,.35)}50%{box-shadow:6px 6px 0 0 rgba(255,255,255,.28),0 0 0 12px rgba(255,255,255,0)}}
+.hero-social{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.btn-sm{padding:10px 18px;font-size:.78rem;font-weight:600}
+.btn-sm .svg-i{width:16px;height:16px}
+.about .svc-line{color:var(--ink);font-weight:600;border-left:3px solid #fff;padding-left:14px}
+.about .no-wait{
+  display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.07em;line-height:1;
+  background:#fff;color:#0a0a0b;padding:10px 18px 7px;border-radius:10px;transform:rotate(-1.5deg);
+  box-shadow:5px 5px 0 0 rgba(255,255,255,.25);margin:8px 0 6px;
+}
+.bang{font-weight:400;font-size:1.5em;line-height:.6;margin-left:.04em;display:inline-block;transform:rotate(8deg)}
+.contact-row span{line-height:1.4}
+.foot-nap{font-size:.86rem;line-height:1.7}
+.foot-nap a:hover{color:#fff;text-decoration:underline}
+.foot-links{flex-wrap:wrap}
+@media(max-width:860px){.hero-social{flex-direction:column;align-items:stretch;width:min(300px,100%)}.hero-social .btn{justify-content:center}}
+
+/* Fewer than 4 barbers: centre the cards instead of leaving a half-empty row */
+.barber-grid.few{grid-template-columns:repeat(auto-fit,minmax(0,270px));justify-content:center}
+@media(max-width:700px){.barber-grid.few{grid-template-columns:repeat(2,1fr)}}
