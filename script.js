@@ -14,9 +14,7 @@ var BARBERS = [
    src – image path, cap – caption shown in the full-size viewer */
 var CUTS = [
   { src: 'cut-01.jpg', cap: 'Precision fringe cut with skin taper' },
-  { src: 'cut-02.jpg', cap: 'Textured crop with highlights & low taper' },
-  { src: 'cut-03.jpg', cap: 'Textured crop — taper detail' },
-  { src: 'cut-04.jpg', cap: 'Freestyle design with burst fade' },
+  { src: 'cut-03.jpg', cap: 'Textured crop with highlights & low taper' },
   { src: 'cut-05.jpg', cap: 'High skin fade with sharp lineup' }
 ];
 
