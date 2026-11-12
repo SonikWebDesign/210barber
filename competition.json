@@ -1,0 +1,37 @@
+[
+  {
+    "photo": "award-01.jpg",
+    "caption": "ATX Barber Madness — Freestyle & Taper winners",
+    "wide": false
+  },
+  {
+    "photo": "award-02.jpg",
+    "caption": "Taking the top prize on stage",
+    "wide": true
+  },
+  {
+    "photo": "award-03.jpg",
+    "caption": "World Class Barber Expo 2026",
+    "wide": false
+  },
+  {
+    "photo": "award-04.jpg",
+    "caption": "The Royal Battle — Taper King & Dynamic Duo",
+    "wide": false
+  },
+  {
+    "photo": "award-05.jpg",
+    "caption": "The Notorious Experience — Best Taper Champion",
+    "wide": true
+  },
+  {
+    "photo": "award-06.jpg",
+    "caption": "Freestyle champions — Drew's World Expo",
+    "wide": false
+  },
+  {
+    "photo": "award-07.jpg",
+    "caption": "First place in Houston",
+    "wide": false
+  }
+]
