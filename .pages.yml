@@ -1,0 +1,146 @@
+# Pages CMS — admin panel for 210 Barber Studio
+# Open https://app.pagescms.org, sign in with GitHub and pick this repository.
+# The client can be invited by email from the Pages CMS "Collaborators" screen.
+
+media:
+  input: uploads
+  output: uploads
+  categories: [image]
+  rename: safe
+
+settings:
+  commit:
+    identity: user
+
+content:
+  - name: barbers
+    label: Barbers
+    type: file
+    path: barbers.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: Barber name
+        type: string
+        required: true
+      - name: price
+        label: Starting price ($)
+        type: number
+        description: Lowest haircut price, numbers only (e.g. 35)
+      - name: platform
+        label: Booking platform
+        type: string
+        description: e.g. Booksy, Square, theCut
+      - name: booking_link
+        label: Booking link
+        type: string
+        description: Leave empty to show "Booking link coming soon"
+      - name: photo
+        label: Barber photo (optional)
+        type: image
+        description: Square photo works best. If empty, the first letter of the name is shown.
+
+  - name: haircuts
+    label: Haircut Photos
+    type: file
+    path: haircuts.json
+    format: json
+    list: true
+    fields:
+      - name: photo
+        label: Photo
+        type: image
+        required: true
+      - name: caption
+        label: Caption
+        type: string
+        description: Shown when the photo is opened full size (e.g. "Low taper with textured top")
+
+  - name: competition
+    label: Competition & Awards Photos
+    type: file
+    path: competition.json
+    format: json
+    list: true
+    fields:
+      - name: photo
+        label: Photo
+        type: image
+        required: true
+      - name: caption
+        label: Caption
+        type: string
+      - name: wide
+        label: Wide (landscape) photo
+        type: boolean
+        description: Turn on for horizontal photos so they take two spaces in the grid
+
+  - name: hours
+    label: Opening Hours
+    type: file
+    path: hours.json
+    format: json
+    list: true
+    fields:
+      - name: day
+        label: Day
+        type: string
+        required: true
+      - name: time
+        label: Hours
+        type: string
+        required: true
+        description: e.g. 10:00 AM – 6:30 PM, or Closed
+
+  - name: site
+    label: Texts & Contact
+    type: file
+    path: site.json
+    format: json
+    fields:
+      - name: hero_text
+        label: Top of page — main sentence
+        type: text
+      - name: hero_open
+        label: Top of page — small line under it
+        type: string
+      - name: barber_count
+        label: Number of barbers (stat)
+        type: string
+      - name: trophies
+        label: Number of trophies (stat, e.g. 50+)
+        type: string
+      - name: starting_price
+        label: Cuts starting from ($)
+        type: number
+      - name: welcome_text
+        label: Welcome — main paragraph
+        type: text
+      - name: services
+        label: Welcome — services line
+        type: text
+      - name: booking_text
+        label: Welcome — booking sentence
+        type: text
+      - name: highlight
+        label: Welcome — highlighted line
+        type: string
+      - name: awards_text_1
+        label: Awards — first paragraph
+        type: text
+      - name: awards_text_2
+        label: Awards — second paragraph
+        type: text
+      - name: awards_highlight
+        label: Awards — bold ending
+        type: text
+      - name: address_line_1
+        label: Address — street
+        type: string
+      - name: address_line_2
+        label: Address — city, state, ZIP
+        type: string
+      - name: phone
+        label: Phone
+        type: string
